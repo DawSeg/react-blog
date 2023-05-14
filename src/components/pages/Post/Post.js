@@ -4,6 +4,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { Button, Card, Col, Row, Modal } from "react-bootstrap";
 import { useState } from "react";
+import { dateToStr } from '../../../Utils/dateToStr';
 
 const Post = () => {
   const { id } = useParams();
@@ -27,9 +28,12 @@ const Post = () => {
                 <strong>Author: </strong>
                 {postData.author} <br />
                 <strong>Published: </strong>
-                {postData.publishedDate} <br />
+                <b>Published:</b>{dateToStr(postData.publishedDate)}<br /> <br />
               </Card.Text>
               <Card.Text>{postData.shortDescription}</Card.Text>
+              <Card.Text
+                dangerouslySetInnerHTML={{ __html: postData.content }}
+              />
             </Card.Body>
           </Card>
         </Col>
